@@ -1,0 +1,6 @@
+C:\Users\ASUS\RiderProjects\AAT_TextExtractor\AAT_TextExtractor\bin\Debug\AAT_TextExtractor.exe
+C:\Users\ASUS\RiderProjects\AAT_TextExtractor\AAT_TextExtractor\bin\Debug\AAT_TextExtractor.pdb
+C:\Users\ASUS\RiderProjects\AAT_TextExtractor\AAT_TextExtractor\obj\Debug\AAT_TextExtractor.csprojAssemblyReference.cache
+C:\Users\ASUS\RiderProjects\AAT_TextExtractor\AAT_TextExtractor\obj\Debug\AAT_TextExtractor.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\RiderProjects\AAT_TextExtractor\AAT_TextExtractor\obj\Debug\AAT_TextExtractor.exe
+C:\Users\ASUS\RiderProjects\AAT_TextExtractor\AAT_TextExtractor\obj\Debug\AAT_TextExtractor.pdb

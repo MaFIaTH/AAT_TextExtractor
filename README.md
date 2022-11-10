@@ -29,20 +29,20 @@ Make sure that the original script file is already converted to .txt or else thi
 Single file mode let you select just one file for the operation, not using single file mode will let the program select every files in the specified folder.
 
 2. **Process Mode:**
-2.1. Extract: Extract parameter from all lines that started with "Text(" then write them in new text file. The lines index will also be exported in .meta file for further insertion process.
-2.2. Insert: Insert edited lines from extracted text relative to the original text by using meta file as a reference. Then exported to a new text file.
+- Extract: Extract parameter from all lines that started with "Text(" then write them in new text file. The lines index will also be exported in .meta file for further insertion process.
+- Insert: Insert edited lines from extracted text relative to the original text by using meta file as a reference. Then exported to a new text file.
 
 3. **Input Directory:**
-3.1. For Extraction: Input is the original text file/folder
-3.2. For Insertion: Input is the edited text file/folder
+- For Extraction: Input is the original text file/folder
+- For Insertion: Input is the edited text file/folder
 
 4. **Original Directory:**
-4.1. For Extraction: None (referred as Input instead of Original)
-4.2. For Insertion: Original is the original text file/folder
+- For Extraction: None (referred as Input instead of Original)
+- For Insertion: Original is the original text file/folder
 
 5. **Output Directory:**
-5.1. For Extraction: Output is the folder that will store the extracted text and meta files
-5.2. For Insertion: Output is the folder that will store the inserted files.
+- For Extraction: Output is the folder that will store the extracted text and meta files
+- For Insertion: Output is the folder that will store the inserted files.
 
 ## FAQ:
 1. **Why is there no output from extraction process?**

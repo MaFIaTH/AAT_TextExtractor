@@ -4,6 +4,25 @@
 **This tool with extract parameter from all Text(); in AAT original script file to simplify them for translation\localization. 
 This tool also supports inserting changes made to the extracted file back to the original script file as well.**
 
+## Disclaimer:
+I'm quite a newbie at writing application, so if my code is bad then please help me fix it. I appreciate every commit/fork for this project.
+
+## Usage:
+**Prequisite:**
+Make sure that the original script file is already converted to .txt or else this wouldn't work. (might support auto convertion for later updates)
+
+**Getting Started:**
+1. Download the latest pre-build release and extracted the file to your working directory.
+
+2. You can use the pre-defined pipeline folders or create your own.
+
+3. Run the program (AAT_TextExtractor.exe), select file/process mode and enter required directories. (Read more about command at *Command Description* below)
+
+4. Wait for the extraction/insertion process to complete.
+
+5. Finished! Yay!
+
+
 ## Command Description:
 
 1. **Single File Mode:** 
@@ -18,7 +37,7 @@ Single file mode let you select just one file for the operation, not using singl
 3.2. For Insertion: Input is the edited text file/folder
 
 4. **Original Directory:**
-4.1. For Extraction: None (refered as Input instead of Original)
+4.1. For Extraction: None (referred as Input instead of Original)
 4.2. For Insertion: Original is the original text file/folder
 
 5. **Output Directory:**
@@ -28,7 +47,7 @@ Single file mode let you select just one file for the operation, not using singl
 ## FAQ:
 1. **Why is there no output from extraction process?**
 **Ans:** Make sure that:
-- All files in the folder is .txt, if not convert them.
+- All files in the folder is .txt, if not, convert them.
 - Your input and output folder are correct.
 
 2. **Why is extracted output empty?**

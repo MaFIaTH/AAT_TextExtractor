@@ -1,0 +1,9 @@
+0 = Clear Speaker
+256 = Unknown Speaker
+512 = Phoenix Wright
+1536 = The Thinker
+1792 = Mia Fey
+2048 = Judge
+2560 = Winston Payne
+6400 = Larry Butz
+6656 = Frank Sahwit

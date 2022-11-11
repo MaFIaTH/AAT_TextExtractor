@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using static AAT_TextExtractor.Storage;
@@ -7,6 +8,7 @@ namespace AAT_TextExtractor
 {
     public class Process
     {
+        public static string speakerIdPath = Directory.GetCurrentDirectory() + @"\SpeakerID.txt";
         public static void Initialization()
         {
             if (ProcessMode.extractMode)
@@ -90,17 +92,40 @@ namespace AAT_TextExtractor
             return true;
         }
 
-        public static void InputTextToList(string file)
+        public static void InputTextToList(string file, string version)
         {
             string newTextName = @"\" + Path.GetFileNameWithoutExtension(file);
             string inputFolder = ProcessMode.singleFileMode
                 ? Path.GetDirectoryName(file)
                 : DirectoryPath.inputPath;
             ListData.newTextData.Clear();
-            foreach (string line in File.ReadAllLines(inputFolder + $"{newTextName}.txt"))
+            if (version.Equals(Program.version))
             {
-                ListData.newTextData.Add(line);
+                foreach (var match in File.ReadLines(inputFolder + $"{newTextName}.txt")
+                             .Where(x => x.IndexOf(@"""") == 0))
+                {
+                    ListData.newTextData.Add(match);
+                }
             }
+            else if (version.Equals("1.0.0"))
+            {
+                foreach (string line in File.ReadAllLines(inputFolder + $"{newTextName}.txt"))
+                {
+                    ListData.newTextData.Add(line);
+                }
+            }
+        }
+
+        public static string GetVersion(string file)
+        {
+            foreach (var match in File.ReadLines(file).Where(x => x.IndexOf(@"{") == 0))
+            {
+                string version = match.Split(new[] { @"{AAT_TE version: " }, StringSplitOptions.None)[1];
+                version = version.Split('}')[0];
+                return version;
+            }
+            Console.WriteLine($"Version header in {file} is not found, please refer to the compatibility note in GitHub for solution");
+            return "Error";
         }
 
         public static void InsertText(string file)
@@ -112,20 +137,43 @@ namespace AAT_TextExtractor
                     return;
                 }
 
-                InputTextToList(file);
+                string fileVersion = GetVersion(file);
+                if (fileVersion.Equals("Error"))
+                {
+                    return;
+                }
+                InputTextToList(file, fileVersion);
                 WriteInFile(file);
             }
+        }
+
+        public static bool CheckSpeakerIdFile()
+        {
+            //string configPath = Directory.GetCurrentDirectory() + @"\SpeakerID.txt";
+            //string configPath = @"C:\Users\ASUS\Desktop\SpeakerID.txt";
+            if (!File.Exists(speakerIdPath))
+            {
+                Console.WriteLine($"Error: SpeakerID file in {speakerIdPath} is not found, aborting...");
+                return false;
+            }
+
+            return true;
         }
 
         public static void ExtractText(string file)
         {
             ListData.lineNumbers.Clear();
             ListData.stringLines.Clear();
+            string[] findLines = { @"Text(""", @"SetSpeakerId(" };
+            if (!CheckSpeakerIdFile())
+            {
+                return;
+            }
             foreach (var match in File.ReadLines(file)
                          .Select((text, index) => new { text, lineNumber = index + 1 })
-                         .Where(x => x.text.Contains(@"Text(""")))
+                         .Where(x => findLines.Any(x.text.Contains)))
             {
-                if (match.text.Contains(@"Text("""))
+                if (match.text.Contains(findLines[0]))
                 {
                     string extractedText = match.text.Split(new[] {@"Text("}, StringSplitOptions.None)[1];
                     extractedText = extractedText.Split(new[] {@");"}, StringSplitOptions.None)[0];
@@ -133,10 +181,31 @@ namespace AAT_TextExtractor
                     ListData.stringLines.Add(extractedText);
                     //Console.WriteLine(extractedText);
                 }
+                if (match.text.Contains(findLines[1]))
+                {
+                    string extractedText = match.text.Split(new[] {@"SetSpeakerId("}, StringSplitOptions.None)[1];
+                    extractedText = extractedText.Split(new[] {@");"}, StringSplitOptions.None)[0];
+                    string speakerName = "\n" + $"[{ReplaceIdWithName(extractedText)}]";
+                    ListData.stringLines.Add(speakerName);
+                }
             }
             WriteInFile(file);
         }
-        
+
+        public static string ReplaceIdWithName(string id)
+        {
+            //string configPath = @"C:\Users\ASUS\Desktop\SpeakerID.txt";
+            foreach (var match in File.ReadLines(speakerIdPath)
+                         .Where(x => x.Contains(id)))
+            {
+                if (match.Split(new[] { " =" }, StringSplitOptions.None)[0].Equals(id))
+                {
+                    string idName = match.Split(new[] { "= " }, StringSplitOptions.None)[1];
+                    return idName;
+                }
+            }
+            return "Error: Missing Speaker Definition";
+        }
         public static void WriteInFile(string file)
         {
             if (ProcessMode.extractMode)
@@ -146,6 +215,7 @@ namespace AAT_TextExtractor
                     : Path.GetFileNameWithoutExtension(file);
                 string textOutput = DirectoryPath.outputPath + $"\\{name}.txt";
                 string metaOutput = DirectoryPath.outputPath + $"\\{name}.meta";
+                ListData.stringLines.Insert(0, @"{" + "AAT_TE version: " + Program.version + @"}");
                 if (!CheckForDuplicate(textOutput))
                 {
                     File.WriteAllLines(textOutput, ListData.stringLines);

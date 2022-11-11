@@ -102,6 +102,15 @@ namespace AAT_TextExtractor
             if (version.Equals(Program.version))
             {
                 foreach (var match in File.ReadLines(inputFolder + $"{newTextName}.txt")
+                             .Where(x => x.IndexOf(@"#") == 0))
+                {
+                    string insertText = match.Split('#')[1];
+                    ListData.newTextData.Add(insertText);
+                }
+            }
+            else if (version.Equals("1.1.0"))
+            {
+                foreach (var match in File.ReadLines(inputFolder + $"{newTextName}.txt")
                              .Where(x => x.IndexOf(@"""") == 0))
                 {
                     ListData.newTextData.Add(match);
@@ -176,7 +185,7 @@ namespace AAT_TextExtractor
                 if (match.text.Contains(findLines[0]))
                 {
                     string extractedText = match.text.Split(new[] {@"Text("}, StringSplitOptions.None)[1];
-                    extractedText = extractedText.Split(new[] {@");"}, StringSplitOptions.None)[0];
+                    extractedText = @"#" + extractedText.Split(new[] {@");"}, StringSplitOptions.None)[0];
                     ListData.lineNumbers.Add(match.lineNumber.ToString());
                     ListData.stringLines.Add(extractedText);
                     //Console.WriteLine(extractedText);

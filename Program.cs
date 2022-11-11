@@ -5,7 +5,7 @@ namespace AAT_TextExtractor
 {
     internal class Program
     {
-        public static string version = "1.1.0";
+        public static string version = "1.1.1";
         public static void Main(string[] args)
         {
             GetFileMode();

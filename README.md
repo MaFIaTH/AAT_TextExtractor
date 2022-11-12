@@ -34,7 +34,7 @@ Make sure that the original script files are already converted to .txt or else t
    - Single file mode let you select just one file for the operation, not using single file mode (simply called "multiple files mode") will let the program select every files in the specified folder. However, using multiple files mode works with just one single file as well.
 
 2. **Process Mode:**
-   - Extract: Extract parameters from all lines that started with "Text("" then write them in new text file. The lines index will also be exported in .meta file for further insertion process.
+   - Extract: Extract parameters from all lines that started with "Text("" then write them in new text file. The lines' index will also be exported in .meta file for further insertion process.
    - Insert: Insert edited lines from extracted text relative to the original text by using meta file as a reference, then exported to a new text file.
 
 3. **Input Directory:**
@@ -88,3 +88,5 @@ If you updated the tool from 1.0.0 version you can add {AAT_TE version: 1.0.0} t
 8. **Why my extracted file has [Error: Missing Speaker Difinition]?**
 >**Ans:** Make sure that your original files are unchanged and you have already added SpeakerID and Name in SpeakerID.text
 
+9. **How can I know SpeakerID and Name?"
+>**Ans:** The only way to know is to look into the original script and find SetSpeakerId method and dialogues below it, then referrence to the playthrough to see who is speaking those dialogues (this shouldn't be difficult for AA fans). Still, I will continue to update SpeakerID.txt, check my repo often for that matter.

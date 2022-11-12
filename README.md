@@ -91,5 +91,5 @@ If you updated the tool from 1.0.0 version you can add {AAT_TE version: 1.0.0} t
 9. **How can I know SpeakerID and Name?**
 >**Ans:** The only way to know is to look into the original script and find SetSpeakerId method and dialogues below it, then referrence to the playthrough to see who is speaking those dialogues (this shouldn't be difficult for AA fans). Still, I will continue to update [SpeakerIDs and Names in the Wiki][Wiki SpeakerIDs and Names], check my repo often for that matter.
 
-[Arguments Description]: https://github.com/MaFIaTH/AAT_TextExtractor#arguments-description
+[Arguments Description]: https://github.com/MaFIaTH/AAT_TextExtractor/edit/main/README.md#arguments-description
 [Wiki SpeakerIDs and Names]: https://github.com/MaFIaTH/AAT_TextExtractor/wiki#speakerids-and-names

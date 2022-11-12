@@ -10,7 +10,7 @@ I'm quite a newbie at writing application, so if my code is bad, please help me 
 ## Usage:
 **Prequisite:**
 
-Make sure that the original script files are already converted to .txt or else this wouldn't work. (might support auto-conversion for later updates)
+Make sure that the original script files are already converted to .txt or else this wouldn't work. (might support auto convertion for later updates)
 
 **Getting Started:**
 1. Download the latest pre-build release and extracted the file to your working directory.
@@ -20,14 +20,14 @@ Make sure that the original script files are already converted to .txt or else t
 3. Extraction process (from version v1.1.0 and further) will need you to manually add the SpeakerIDs and Speaker's names in SpeakerID.txt found in this tool's directory.
 (There are some IDs and names provided as an example in the file, please follow the same formatting.)
 
-4. Run the program (AAT_TextExtractor.exe), select file/process mode and enter required directories. (Read more about command at [*Arguments Description*][Arguments Description] below.)
+4. Run the program (AAT_TextExtractor.exe), select file/process mode and enter required directories. (Read more about command at *Command Description* below.)
 
 5. Wait for the extraction/insertion process to complete.
 
 6. Finished! Yay!
 
 
-## Arguments Description:
+## Command Description:
 
 1. **Single File Mode:**
  
@@ -88,8 +88,7 @@ If you updated the tool from 1.0.0 version you can add {AAT_TE version: 1.0.0} t
 8. **Why my extracted file has [Error: Missing Speaker Difinition]?**
 >**Ans:** Make sure that your original files are unchanged and you have already added SpeakerID and Name in SpeakerID.text
 
-9. **How can I know SpeakerID and Name?**
+9. **How can I know SpeakerID and Name?"**
 >**Ans:** The only way to know is to look into the original script and find SetSpeakerId method and dialogues below it, then referrence to the playthrough to see who is speaking those dialogues (this shouldn't be difficult for AA fans). Still, I will continue to update [SpeakerIDs and Names in the Wiki][Wiki SpeakerIDs and Names], check my repo often for that matter.
 
-[Arguments Description]: https://github.com/MaFIaTH/AAT_TextExtractor/edit/main/README.md#arguments-description
 [Wiki SpeakerIDs and Names]: https://github.com/MaFIaTH/AAT_TextExtractor/wiki#speakerids-and-names

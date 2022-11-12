@@ -88,5 +88,7 @@ If you updated the tool from 1.0.0 version you can add {AAT_TE version: 1.0.0} t
 8. **Why my extracted file has [Error: Missing Speaker Difinition]?**
 >**Ans:** Make sure that your original files are unchanged and you have already added SpeakerID and Name in SpeakerID.text
 
-9. **How can I know SpeakerID and Name?"
->**Ans:** The only way to know is to look into the original script and find SetSpeakerId method and dialogues below it, then referrence to the playthrough to see who is speaking those dialogues (this shouldn't be difficult for AA fans). Still, I will continue to update SpeakerID.txt, check my repo often for that matter.
+9. **How can I know SpeakerID and Name?"**
+>**Ans:** The only way to know is to look into the original script and find SetSpeakerId method and dialogues below it, then referrence to the playthrough to see who is speaking those dialogues (this shouldn't be difficult for AA fans). Still, I will continue to update [SpeakerIDs and Names in the Wiki][Wiki SpeakerIDs and Names], check my repo often for that matter.
+
+[Wiki SpeakerIDs and Names]: https://github.com/MaFIaTH/AAT_TextExtractor/wiki#speakerids-and-names

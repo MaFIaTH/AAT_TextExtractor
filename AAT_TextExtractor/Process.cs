@@ -99,7 +99,7 @@ namespace AAT_TextExtractor
                 ? Path.GetDirectoryName(file)
                 : DirectoryPath.inputPath;
             ListData.newTextData.Clear();
-            if (version.Equals(Program.version))
+            if (version.Equals(Program.version) || version.Equals("1.1.1"))
             {
                 foreach (var match in File.ReadLines(inputFolder + $"{newTextName}.txt")
                              .Where(x => x.IndexOf(@"#") == 0))
@@ -173,7 +173,8 @@ namespace AAT_TextExtractor
         {
             ListData.lineNumbers.Clear();
             ListData.stringLines.Clear();
-            string[] findLines = { @"Text(""", @"SetSpeakerId(" };
+            string[] findLines = { @"Text(""", @"SetSpeakerId(", @"Wait(", @"NewLine(", @"ClearText(", @"ReadKey(", @"Op_" };
+            string[] specialString = { @"ClearText(", @"ReadKey(", @"Op_", @"NewLine(", @"Wait(" };
             if (!CheckSpeakerIdFile())
             {
                 return;
@@ -188,7 +189,6 @@ namespace AAT_TextExtractor
                     extractedText = @"#" + extractedText.Split(new[] {@");"}, StringSplitOptions.None)[0];
                     ListData.lineNumbers.Add(match.lineNumber.ToString());
                     ListData.stringLines.Add(extractedText);
-                    //Console.WriteLine(extractedText);
                 }
                 if (match.text.Contains(findLines[1]))
                 {
@@ -197,8 +197,44 @@ namespace AAT_TextExtractor
                     string speakerName = "\n" + $"[{ReplaceIdWithName(extractedText)}]";
                     ListData.stringLines.Add(speakerName);
                 }
+                if (specialString.Any(s => match.text.Contains(s)))
+                {
+                    ListData.stringLines.Add($"[{match.text}]");
+                }
             }
+            var test = ListData.stringLines;
+            CleanIrrelevantCommand(ListData.stringLines, out ListData.stringLines);
             WriteInFile(file);
+        }
+        
+        public static void CleanIrrelevantCommand(List<string> lineList, out List<string> newLineList)
+        {
+            string[] splitter = { @"#""", @"Wait(", @"ClearText(", @"ReadKey(", @"Op_" };
+            newLineList = lineList;
+            List<int> removeIndex = new List<int>();
+            bool removeWait = true;
+            foreach (var match in lineList
+                         .Select((text, index) => new {text, listIndex = index})
+                         .Where(x => splitter.Any(x.text.Contains)))
+            {
+                if (match.text.Contains(@"Wait(") && removeWait)
+                {
+                    removeIndex.Add(match.listIndex);
+                }
+                else if (match.text.Contains(@"ClearText(") || match.text.Contains(@"ReadKey(") || match.text.Contains(@"Op_"))
+                {
+                    removeWait = true;
+                    removeIndex.Add(match.listIndex);
+                }
+                else if (match.text.Contains(@"#"""))
+                {
+                    removeWait = false;
+                }
+            }
+            foreach (int index in removeIndex.OrderByDescending(i => i))
+            {
+                newLineList.RemoveAt(index);
+            }
         }
 
         public static string ReplaceIdWithName(string id)

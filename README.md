@@ -4,6 +4,9 @@
 **This tool will extract parameters from all Text();, NewLine();, Wait(); and SetSpeakerId(); in AAT original script file to simplify them for translation\localization. 
 This tool also supports inserting changes made to the extracted file back to the original script file as well.**
 
+## Announcement:
+From version 1.3.0 and further, there will be a GUI version that is easy to use and comes with customizable options for extraction process! Check out [Release](https://github.com/MaFIaTH/AAT_TextExtractor/releases) for that matter.
+
 ## Disclaimer:
 I'm quite a newbie at writing application, so if my code is bad, please help me fix it. I appreciate every commits/forks for this project.
 

@@ -99,7 +99,7 @@ namespace AAT_TextExtractor
                 ? Path.GetDirectoryName(file)
                 : DirectoryPath.inputPath;
             ListData.newTextData.Clear();
-            if (version.Equals(Program.version) || version.Equals("1.1.1"))
+            if (version.Equals(Program.version) || version.Equals("1.1.1") || version.Equals("1.2.0"))
             {
                 foreach (var match in File.ReadLines(inputFolder + $"{newTextName}.txt")
                              .Where(x => x.IndexOf(@"#") == 0))
@@ -173,7 +173,11 @@ namespace AAT_TextExtractor
         {
             ListData.lineNumbers.Clear();
             ListData.stringLines.Clear();
-            string[] findLines = { @"Text(""", @"SetSpeakerId(", @"Wait(", @"NewLine(", @"ClearText(", @"ReadKey(", @"Op_" };
+            string[] findLines =
+            {
+                @"Text(""", @"SetSpeakerId(", @"Wait(", @"NewLine(", @"ClearText(", @"ReadKey(", @"Op_2D(", @"Op_0A(",
+                @"Op_08(", @"Op_09(", @"Op_15("
+            };
             string[] specialString = { @"ClearText(", @"ReadKey(", @"Op_", @"NewLine(", @"Wait(" };
             if (!CheckSpeakerIdFile())
             {
@@ -224,7 +228,7 @@ namespace AAT_TextExtractor
                 else if (match.text.Contains(@"ClearText(") || match.text.Contains(@"ReadKey(") || match.text.Contains(@"Op_"))
                 {
                     removeWait = true;
-                    removeIndex.Add(match.listIndex);
+                    //removeIndex.Add(match.listIndex);
                 }
                 else if (match.text.Contains(@"#"""))
                 {

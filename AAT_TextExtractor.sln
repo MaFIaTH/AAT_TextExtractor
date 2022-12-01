@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AAT_TextExtractor", "AAT_TextExtractor\AAT_TextExtractor.csproj", "{B0D125BA-F0CC-407F-8F4B-2943D50873BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AAT_TextExtractor_GUI", "AAT_TextExtractor_GUI\AAT_TextExtractor_GUI.csproj", "{5E467609-68B7-49C4-A362-468B6E9A9E18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{B0D125BA-F0CC-407F-8F4B-2943D50873BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0D125BA-F0CC-407F-8F4B-2943D50873BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0D125BA-F0CC-407F-8F4B-2943D50873BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E467609-68B7-49C4-A362-468B6E9A9E18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E467609-68B7-49C4-A362-468B6E9A9E18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E467609-68B7-49C4-A362-468B6E9A9E18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E467609-68B7-49C4-A362-468B6E9A9E18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,42 @@
+0 = Clear Speaker
+256 = Unknown Speaker
+512 = Phoenix Wright
+1024 = Maya Fey
+1536 = The Thinker
+1792 = Mia Fey
+2048 = Judge
+2304 = Miles Edgeworth
+2560 = Winston Payne
+3072 = Melvin Grossberg
+3328 = Cellular Phone
+3840 = Unknown Speaker
+4864 = TV
+5120 = Dick Gumshoe
+5376 = Redd White
+5632 = April May
+5888 = Bellboy
+6400 = Larry Butz
+6656 = Frank Sahwit
+6912 = Will
+4352 = Oldbag
+4096 = Penny
+
+7168 = Cody
+4608 = Manella
+6144 = Vasquez
+11264 = Ema
+11520 = Lana
+13312 = Meekins
+12800 = Starr
+12544 = Gant
+11776 = Jake
+
+
+
+
+
+
+
+
+
+

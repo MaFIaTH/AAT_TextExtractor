@@ -1,7 +1,7 @@
 # AAT_TextExtractor
 **Ace Attorney Trilogy - Text Extractor** (or you can just call it "Text Script Simplifier")
 
-**This tool will extract parameters from all Text(); and SetSpeakerId(); in AAT original script file to simplify them for translation\localization. 
+**This tool will extract parameters from all Text();, NewLine();, Wait(); and SetSpeakerId(); in AAT original script file to simplify them for translation\localization. 
 This tool also supports inserting changes made to the extracted file back to the original script file as well.**
 
 ## Disclaimer:

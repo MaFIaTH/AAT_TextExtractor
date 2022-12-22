@@ -99,7 +99,8 @@ namespace AAT_TextExtractor
                 ? Path.GetDirectoryName(file)
                 : DirectoryPath.inputPath;
             ListData.newTextData.Clear();
-            if (version.Equals(Program.version) || version.Equals("1.1.1") || version.Equals("1.2.0"))
+            string[] recentVersions = new[] { Program.version, "1.1.1", "1.2.0", "1.3.0" };
+            if (recentVersions.Any(x => x.Equals(version)))
             {
                 foreach (var match in File.ReadLines(inputFolder + $"{newTextName}.txt")
                              .Where(x => x.IndexOf(@"#") == 0))
@@ -175,7 +176,7 @@ namespace AAT_TextExtractor
             ListData.stringLines.Clear();
             string[] findLines =
             {
-                @"Text(""", @"SetSpeakerId(", @"Wait(", @"NewLine(", @"ClearText(", @"ReadKey(", @"Op_2D(", @"Op_0A(",
+                @"Text(""", @"SetSpeakerId(", @"Wait(", @"NewLine(", @"SetTextColor(", @"ClearText(", @"ReadKey(", @"Op_2D(", @"Op_0A(",
                 @"Op_08(", @"Op_09(", @"Op_15("
             };
             string[] specialString = { @"ClearText(", @"ReadKey(", @"Op_", @"NewLine(", @"Wait(" };
@@ -187,26 +188,46 @@ namespace AAT_TextExtractor
                          .Select((text, index) => new { text, lineNumber = index + 1 })
                          .Where(x => findLines.Any(x.text.Contains)))
             {
-                if (match.text.Contains(findLines[0]))
+                if (match.text.Contains(@"Text("""))
                 {
                     string extractedText = match.text.Split(new[] {@"Text("}, StringSplitOptions.None)[1];
                     extractedText = @"#" + extractedText.Split(new[] {@");"}, StringSplitOptions.None)[0];
                     ListData.lineNumbers.Add(match.lineNumber.ToString());
                     ListData.stringLines.Add(extractedText);
                 }
-                if (match.text.Contains(findLines[1]))
+                if (match.text.Contains(@"SetSpeakerId("))
                 {
                     string extractedText = match.text.Split(new[] {@"SetSpeakerId("}, StringSplitOptions.None)[1];
                     extractedText = extractedText.Split(new[] {@");"}, StringSplitOptions.None)[0];
                     string speakerName = "\n" + $"[{ReplaceIdWithName(extractedText)}]";
                     ListData.stringLines.Add(speakerName);
                 }
+                if (match.text.Contains(@"SetTextColor("))
+                {
+                    string extractedParameter = match.text.Split(new[] { @"SetTextColor(" }, StringSplitOptions.None)[1];
+                    extractedParameter = extractedParameter.Split(new[] {@");"}, StringSplitOptions.None)[0];
+                    switch (extractedParameter)
+                    {
+                        case "0":
+                            extractedParameter = "White";
+                            break;
+                        case "1":
+                            extractedParameter = "Red";
+                            break;
+                        case "2":
+                            extractedParameter = "Blue";
+                            break;
+                        case "3":
+                            extractedParameter = "Green";
+                            break;
+                    }
+                    ListData.stringLines.Add($"[SetTextColor({extractedParameter});]");
+                }
                 if (specialString.Any(s => match.text.Contains(s)))
                 {
                     ListData.stringLines.Add($"[{match.text}]");
                 }
             }
-            var test = ListData.stringLines;
             CleanIrrelevantCommand(ListData.stringLines, out ListData.stringLines);
             WriteInFile(file);
         }

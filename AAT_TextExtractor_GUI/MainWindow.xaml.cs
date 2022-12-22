@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using Microsoft.Win32;
@@ -26,6 +27,7 @@ namespace AAT_TextExtractor_GUI
             extractMode = ExtractionButton.IsChecked == true;
             includeWait = IncludeWait.IsChecked == true;
             includeNewLine = IncludeNewLine.IsChecked == true;
+            includeSetTextColor = IncludeSetTextColor.IsChecked == true;
             includeNewTextBox = IncludeNewTextBox.IsChecked == true;
             if (!GetDirectory("Original", out originalPath))
             {
@@ -121,7 +123,5 @@ namespace AAT_TextExtractor_GUI
 
             }
         }
-
-        
     }
 }

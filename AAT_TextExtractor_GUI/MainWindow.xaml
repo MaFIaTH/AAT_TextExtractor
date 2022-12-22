@@ -65,6 +65,10 @@
                               ToolTip="Include NewLine(); command from the original script.">
                     
                     </CheckBox>
+                    <CheckBox x:Name="IncludeSetTextColor" Content="Include SetTextColor();" IsChecked="True"
+                              ToolTip="Include SetTextColor(); command from the original script.">
+                    
+                    </CheckBox>
                     <CheckBox x:Name="IncludeNewTextBox" Content="Include New Text Box Commands" IsChecked="True"
                               ToolTip="Include commands such as ClearText, ReadKey, Op_, etc. from the original script.">
                     

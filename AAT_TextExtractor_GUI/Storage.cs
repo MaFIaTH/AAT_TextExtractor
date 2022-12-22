@@ -22,6 +22,8 @@ namespace AAT_TextExtractor_GUI
         {
             public static bool includeWait { get; set; }
             public static bool includeNewLine { get; set; }
+            
+            public static bool includeSetTextColor { get; set; }
             public static bool includeNewTextBox { get; set; }
         }
 
